@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    container_name: mydb
+    build: ./db
+  web:
+    container_name: myweb
+    build: ./web
+    volumes:
+      - ./web/src:/usr/src/app/src
+    ports:
+      - "8080:8080"
+    command: nodemon
+    depends_on:
+      - db
+    restart: always
+
+
